@@ -2,7 +2,7 @@ import { Grid, Card, Text, Group, Title, Table, Badge, Box } from '@mantine/core
 import { IconUsers, IconCar, IconReport, IconCoin } from '@tabler/icons-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import { summary, revenueTrend, tripDistribution, recentTrips, userGrowth, statusColors } from './constants';
-import type { SummaryItem } from './types';
+import type { SummaryItem, RecentTrip } from './types';
 
 const iconMap = {
   users: IconUsers,
@@ -15,7 +15,7 @@ export default function DashboardWidget() {
   return (
     <Box p="md">
       <Grid gutter="md">
-        {summary.map((item: SummaryItem) => {
+        {(summary as SummaryItem[]).map((item: SummaryItem) => {
           const Icon = iconMap[item.icon];
           return (
             <Grid.Col span={{ base: 12, sm: 6, md: 3 }} key={item.label}>
@@ -88,18 +88,18 @@ export default function DashboardWidget() {
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
-            {recentTrips.map((trip) => (
+            {(recentTrips as RecentTrip[]).map((trip) => (
               <Table.Tr key={trip.id}>
                 <Table.Td>{trip.id}</Table.Td>
                 <Table.Td>{trip.driver}</Table.Td>
                 <Table.Td>{trip.route}</Table.Td>
                 <Table.Td>
-                  <Badge color={statusColors[trip.status]} variant="light">
+                  <Badge color={statusColors[trip.status as keyof typeof statusColors]} variant="light">
                     {trip.status}
                   </Badge>
                 </Table.Td>
                 <Table.Td>{trip.passengers}</Table.Td>
-                <Table.Td>${trip.revenue.toFixed(2)}</Table.Td>
+                <Table.Td>${trip.revenue}</Table.Td>
               </Table.Tr>
             ))}
           </Table.Tbody>

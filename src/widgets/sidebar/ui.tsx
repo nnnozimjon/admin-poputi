@@ -1,16 +1,7 @@
 import { useState } from 'react';
 import {
-  IconCar,
-  IconCurrencyDollar,
-  IconDashboard,
-  IconGift,
   IconLogout,
-  IconMapPin,
-  IconMessageCircle,
-  IconSettings,
   IconSwitchHorizontal,
-  IconUsers,
-  IconWorld,
   IconChevronDown,
   IconChevronRight,
 } from '@tabler/icons-react';
